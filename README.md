@@ -36,3 +36,9 @@ curl -X POST -H "Content-Type:application/json" http://localhost:3000/messages -
 # Authentication
 Being a stateless is another characteristic of RESTful services. After all, it should be possible to create multiple server instances to balance the incoming traffic evenly between the servers.
  That's why a server cannot keep the state (e.g. authenticated user) and the client always has to send this information along with each request. 
+
+ # Modular Routing
+ give each REST resource their own file in a dedicated folder (ex: message route, user route)
+
+ # MongoDB
+ We the models conveniently via the context object to every Express route with an application-wide Express middleware

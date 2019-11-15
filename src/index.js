@@ -1,10 +1,22 @@
 import 'dotenv/config';
-import models from "./models";
 import express from "express";
+import bodyParser from "body-parser";
+var mongoose = require("mongoose");
 import cors from "cors";
 import uuidv4 from "uuid/v4";
+var models = require('../models');
+var userModel = require('../models/user');
+var messageModel = require("../models/message");
+var routes = require('../routes/index');
+
+var userRouter = require("../routes/user");
+var messageRouter = require("../routes/message");
+var sessionRouter = require("../routes/session");
+
 
 const app = express();
+
+
 
 //  Middleware. All routes use this
 app.use(cors());
@@ -12,22 +24,79 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+app.use("/session", sessionRouter);
+app.use("/user", userRouter);
+app.use("/message", messageRouter);
 
 //  Let's do a simple version of a middleware that determines a pseudo "authenticated" user that is sending the request.
-app.use((req, res, next) => {
-    req.context = {
-      models,
-      me: models.users[1]
-    };
-  next();       //  The next function, which is available as third argument, is called to signalize that the middleware has finished its job. 
+//  Pass models via the context object to every Express route with an application-wide Express middleware 
+
+
+
+const connectDb = () => {
+  return mongoose.connect(process.env.DATABASE_URL);
+};
+
+//  re-initialize db on every start, and clear out all old data
+const eraseDatabaseOnSync = false;
+
+//  connects to the database asynchronously. deletes all data if eraseDatabase true
+connectDb().then(async () => {
+  if (eraseDatabaseOnSync) {
+    await Promise.all([
+      userModel.deleteMany({}),
+      messageModel.deleteMany({})
+    ]);
+
+    //createUsersWithMessages();
+  }   // creates  seed data in db 
+
+  app.listen(process.env.PORT, () =>
+    console.log(`Example app listening on port ${process.env.PORT}!`)
+  );
 });
 
+app.use(async (req, res, next) => {
+  res.context = {
+    models,
+    userModel,
+    messageModel,
+    me: await userModel.findByLogin("ryan")
+  };
+  next(); //  The next function, which is available as third argument, is called to signalize that the middleware has finished its job.
+});
 
+//  Seed database with sample data 
+/*
+const createUsersWithMessages = async () => {
+  const user1 = new userModel({
+    username: "ryan"
+  });
+  const user2 = new userModel({
+    username: "steve"
+  });
+  const message1 = new messageModel({
+    text: "sample message 1 by user 1",
+    user: user1.id
+  });
+  const message2 = new messageModel({
+    text: "another sample message",
+    user: user2.id
+  });
+  const message3 = new messageModel({
+    text: "wow anotehr message! ",
+    user: user2.id
+  });
+  await message1.save();
+  await message2.save();
+  await message3.save();
+  await user1.save();
+  await user2.save();
+};
+*/
 
-
-
-
-
+// the following function initiated data in databse
+// createUsersWithMessages();
 
 //  Home
 app.get("/", (req, res) => {
@@ -45,9 +114,7 @@ app.delete("/", (req, res) => {
 
 
 // Users
-app.get("/users", (req, res) => {
-  return res.send(Object.values(req.context.models.users));
-});
+
 app.post("/users", (req, res) => {
   return res.send("POST HTTP method on user resource");
 });
@@ -60,9 +127,7 @@ app.delete("/users", (req, res) => {
 
 
 // Individual Users
-app.get("/users/:userId", (req, res) => {
-  return res.send(req.context.models.users[req.params.userId]);
-});
+
 app.put("/users/:userId", (req, res) => {
     return res.send(users[req.params.userId]);
 });
@@ -71,43 +136,8 @@ app.delete("/users/:userId", (req, res) => {
 });
 
 
-// Session
-app.get("/session", (req, res) => {
-  return res.send(req.context.models.users[req.context.me.id]);
-});
-
-
-//  Messages
-app.get("/messages", (req, res) => {
-  return res.send(Object.values(req.context.models.messages));
-});
-app.get("/messages/:messageId", (req, res) => {
-  return res.send(req.context.models.messages[req.params.messageId]);
-});
-app.post("/messages", (req, res) => {
-  const id = uuidv4();  //only using this since we dont have a database to generate unique IDs
-  const message = {
-    id,
-    text: req.body.text, //  post method allwos data to be sent as payload in the body
-    userId: req.context.me.id //   Then it's possible to append authenticated user from middleware from the request as message creator to the message:
-  };
-
-    req.context.models.messages[id] = message;
-  return res.send(message);
-});
-
-
-app.delete("/messages/:messageId", (req, res) => {
-   const {[req.params.messageId]: message, ...otherMessages } = req.context.models.messages;
-
-   req.context.models.messages = otherMessages;
-
-  return res.send(message);
-});
 
 
 
 
-app.listen(process.env.PORT, () =>
-  console.log(`Example app listening on port ${process.env.PORT}!`)
-);
+
