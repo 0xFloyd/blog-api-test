@@ -56,15 +56,18 @@ connectDb().then(async () => {
   );
 });
 
+// MIDDELWARE FOR KEEPING TRACK OF LOGIN 
+/*
 app.use(async (req, res, next) => {
-  res.context = {
+  req.context = {
     models,
     userModel,
-    messageModel,
-    me: await userModel.findByLogin("ryan")
+    messageModel
+    //me: await userModel.findByLogin("ryan")
   };
   next(); //  The next function, which is available as third argument, is called to signalize that the middleware has finished its job.
 });
+*/
 
 //  Seed database with sample data 
 /*
@@ -115,13 +118,13 @@ app.delete("/", (req, res) => {
 
 // Users
 
-app.post("/users", (req, res) => {
+app.post("/user", (req, res) => {
   return res.send("POST HTTP method on user resource");
 });
-app.put("/users", (req, res) => {
+app.put("/user", (req, res) => {
   return res.send("PUT HTTP method on user resource");
 });
-app.delete("/users", (req, res) => {
+app.delete("/user", (req, res) => {
   return res.send("DELETE HTTP method on user resource");
 });
 

@@ -18,11 +18,12 @@ router.get("/:messageId", async (req, res) => {
 
 // create new message, creating a unique id for that maessage, 
 router.post("/", async (req, res) => {
+  const tempUser = await userModel.findByLogin("ryan");
   const message = await messageModel.create({
     text: req.body.text,
-    user: req.context.me.id
+    user: tempUser.id
   });
-  return res.send(message);
+  return res.send({ message, tempUser});
 });
 
 
