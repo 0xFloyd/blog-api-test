@@ -9,24 +9,35 @@ class App extends Component {
   }
 
   callAPI() {
-    fetch("http://localhost:9000/user")
+    fetch("http://localhost:9000/message")
     .then(res => res.json())
     .then(res => this.setState({ users: res}))
     .catch(err => err);
   }
 
+  responseTest() {
+    fetch("http://localhost:9000/message").then((response) => {
+      response.json().then((data) => {
+        //console.log(data[1].user.username);
+        console.log(data);
+      });
+  });
+  }
+ 
   componentWillMount() {
     this.callAPI();
+    this.responseTest();
   }
 
   render() {
     const data = Array.from(this.state.users);
-    const userList = data.map((d) => <li key={d.username}>{d.username}</li>);
+    const userList = data.map((d) => <li>{d.text} by {d.user.username}</li>);
     return (
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <p className="App-intro">{userList}</p>
+          
         </header>
       </div>
     );

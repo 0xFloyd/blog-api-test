@@ -70,7 +70,7 @@ app.use(async (req, res, next) => {
 */
 
 //  Seed database with sample data 
-/*
+
 const createUsersWithMessages = async () => {
   const user1 = new userModel({
     username: "ryan"
@@ -79,27 +79,25 @@ const createUsersWithMessages = async () => {
     username: "steve"
   });
   const message1 = new messageModel({
-    text: "sample message 1 by user 1",
+    text: "sample message 1",
     user: user1.id
   });
   const message2 = new messageModel({
     text: "another sample message",
     user: user2.id
   });
-  const message3 = new messageModel({
-    text: "wow anotehr message! ",
-    user: user2.id
-  });
-  await message1.save();
-  await message2.save();
-  await message3.save();
+
+ 
   await user1.save();
   await user2.save();
+
+  await message1.save();
+  await message2.save();
 };
-*/
+
 
 // the following function initiated data in databse
-// createUsersWithMessages();
+ createUsersWithMessages();
 
 //  Home
 app.get("/", (req, res) => {

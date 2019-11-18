@@ -6,7 +6,7 @@ var messageModel = require("../models/message");
 
 //get all messages
 router.get("/", async (req, res) => {
-  const messages = await messageModel.find();
+  const messages = await messageModel.find({}).populate('user');
   return res.send(messages);
 });
 
