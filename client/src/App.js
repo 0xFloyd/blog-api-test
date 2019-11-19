@@ -31,11 +31,11 @@ class App extends Component {
 
   render() {
     const data = Array.from(this.state.users);
-    const userList = data.map((d) => <li>{d.text} by {d.user.username}</li>);
+    const userList = data.map((d) => <p>{d.text} by {d.user.username}</p>);
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
+         
           <p className="App-intro">{userList}</p>
           
         </header>
@@ -46,3 +46,19 @@ class App extends Component {
 }
 
 export default App;
+
+
+
+/* 
+
+fetch('http://localhost:4000/upload', {
+method: 'POST',
+body: data
+}).then(response => {
+response.json().then(body => {
+this.setState({ imageURL: `http://localhost:4000/${body.file}` });
+});
+});
+}
+
+*/
