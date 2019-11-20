@@ -1,6 +1,12 @@
 import React, { Component} from 'react';
 import logo from './logo.svg';
 import './App.css';
+import GetMessageList from "./GetMessageList"
+import GetUserList from './GetUserList';
+import Posts from "./posts";
+import PostDetail from "./blogpost";
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+
 
 class App extends Component {
   constructor(props) {
@@ -8,36 +14,16 @@ class App extends Component {
     this.state = { users: '' };
   }
 
-  callAPI() {
-    fetch("http://localhost:9000/message")
-    .then(res => res.json())
-    .then(res => this.setState({ users: res}))
-    .catch(err => err);
-  }
-
-  responseTest() {
-    fetch("http://localhost:9000/message").then((response) => {
-      response.json().then((data) => {
-        //console.log(data[1].user.username);
-        console.log(data);
-      });
-  });
-  }
- 
-  componentWillMount() {
-    this.callAPI();
-    this.responseTest();
-  }
 
   render() {
-    const data = Array.from(this.state.users);
-    const userList = data.map((d) => <p>{d.text} by {d.user.username}</p>);
     return (
       <div className="App">
         <header className="App-header">
-         
-          <p className="App-intro">{userList}</p>
-          
+          <Router>
+            <Route exact path="/" component={GetMessageList} />
+            <Route exact path="/posts" component={Posts} />
+            <Route path="/posts/:id" component={PostDetail} />
+          </Router>
         </header>
       </div>
     );
