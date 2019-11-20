@@ -21,9 +21,8 @@ function PostDetail({ match }) {
 
   return (
     <div>
-      <h1>Post</h1>
-      <h3>{blogpost.text}</h3>
-      <h3>{blogpost.user}</h3>
+      <h1>{blogpost.text}</h1>
+      <h3>By {blogpost.user}</h3>
     </div>
   );
 }
