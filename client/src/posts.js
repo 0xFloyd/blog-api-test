@@ -1,6 +1,6 @@
 //  video on react router       https://www.youtube.com/watch?v=Law7wfdg_ls
 
-import React, { useState, useEffect, Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import {Link} from "react-router-dom";
 
@@ -27,7 +27,7 @@ function Posts() {
         {items.map(item => (
           <h3 key={item._id}>
             <Link to={`/posts/${item._id}`}>{item.text} </Link>
-            by {item.user.username}
+            by <Link to={`/users/${item.user._id}`}>{item.user.username} </Link>
           </h3>
         ))}
       </div>

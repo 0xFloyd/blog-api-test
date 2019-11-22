@@ -1,6 +1,6 @@
 //  video on react router       https://www.youtube.com/watch?v=Law7wfdg_ls
 
-import React, { useState, useEffect, Component } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 import { Link } from "react-router-dom";
 
@@ -14,19 +14,19 @@ function UserDetail({ match }) {
 
   const fetchItem = async () => {
     const authorsPosts  = [];
-    //console.log(match);
+    console.log(match);
     const postAuthorId = match.params.id;
     const data = await fetch(`http://localhost:9000/message`);
     const messages = await data.json();
     messages.forEach(message => {
-      if (message.user._id == postAuthorId) {
+      if (message.user._id === postAuthorId) {
         authorsPosts.push(message);
       };
     }); 
-  
-    const postAuthor = messages[0].user.username; //its grabbing first message returned, but the author should be the same for all itenms in the array
-    setAuthor(postAuthor);
+    
+    const postAuthor = authorsPosts[0].user.username; //its grabbing first message returned, but the author should be the same for all itenms in the array
     setPosts(authorsPosts); // setting state to items
+    setAuthor(postAuthor);
   };
   
   return (

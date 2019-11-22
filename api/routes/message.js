@@ -12,8 +12,8 @@ router.get("/", async (req, res) => {
 
 //get particular messages
 router.get("/:messageId", async (req, res) => {
-  const message = await messageModel.findById(req.params.messageId);
-  //console.log(message);
+  const message = await messageModel.findById(req.params.messageId).populate('user');
+  console.log(message);
   return res.send(message);
 });
 

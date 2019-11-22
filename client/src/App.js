@@ -1,13 +1,13 @@
 import React, { Component} from 'react';
-import logo from './logo.svg';
+//import logo from './logo.svg';
 import './App.css';
-import GetMessageList from "./GetMessageList"
-import GetUserList from './GetUserList';
+//import GetMessageList from "./GetMessageList"
+//import GetUserList from './GetUserList';
 import Posts from "./posts";
 import Users from "./users";
 import PostDetail from "./postdetail";
 import UserDetail from "./userdetail";
-import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import {BrowserRouter as Router, Route} from 'react-router-dom';
 
 
 class App extends Component {

@@ -1,6 +1,6 @@
 //  video on react router       https://www.youtube.com/watch?v=Law7wfdg_ls
 
-import React, { useState, useEffect, Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import {Link} from "react-router-dom";
 
@@ -17,7 +17,7 @@ function Users() {
     
 
         const items = await data.json();
-        //console.log(items);
+        console.log(items);
         setItems(items);        // setting state to items 
     };
 
