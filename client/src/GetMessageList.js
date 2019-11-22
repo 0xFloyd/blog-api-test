@@ -40,7 +40,7 @@ class GetMessageList extends Component {
         <div>
           <div className="App-intro">{messageList}</div>
           <GetUserList></GetUserList>
-          <Link to= "/post">
+          <Link to= "/posts">
             <li>Post</li>
           </Link>
       </div>

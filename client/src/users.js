@@ -4,7 +4,7 @@ import React, { useState, useEffect, Component } from 'react';
 import './App.css';
 import {Link} from "react-router-dom";
 
-function Posts() {
+function Users() {
     useEffect(() => {
         fetchItems();
     }, []);     //  [] means it will only run when the component mounts 
@@ -13,7 +13,7 @@ function Posts() {
     const [items, setItems] = useState([]); // setting state to the items. its an empty array 
 
     const fetchItems = async () => {
-        const data = await fetch("http://localhost:9000/message");
+        const data = await fetch("http://localhost:9000/user");
     
 
         const items = await data.json();
@@ -23,15 +23,14 @@ function Posts() {
 
     return (
       <div>
-        <h1>Blog Posts</h1>
+        <h1>Users</h1>
         {items.map(item => (
           <h3 key={item._id}>
-            <Link to={`/posts/${item._id}`}>{item.text} </Link>
-            by {item.user.username}
+            Posts by <Link to={`/users/${item._id}`}>{item.username} </Link>
           </h3>
         ))}
       </div>
     );
 }
 
-export default Posts;
+export default Users;

@@ -4,7 +4,9 @@ import './App.css';
 import GetMessageList from "./GetMessageList"
 import GetUserList from './GetUserList';
 import Posts from "./posts";
-import PostDetail from "./blogpost";
+import Users from "./users";
+import PostDetail from "./postdetail";
+import UserDetail from "./userdetail";
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
 
@@ -20,9 +22,10 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <Router>
-            <Route exact path="/" component={GetMessageList} />
-            <Route exact path="/posts" component={Posts} />
+            <Route exact path="/" component={Posts} />
+            <Route exact path="/users" component={Users} />
             <Route path="/posts/:id" component={PostDetail} />
+            <Route path="/users/:id" component={UserDetail} />
           </Router>
         </header>
       </div>

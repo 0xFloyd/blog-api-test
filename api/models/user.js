@@ -3,7 +3,8 @@ var mongoose = require("mongoose");
 const userSchema = new mongoose.Schema({
   username: {
     type: String,
-    unique: true
+    unique: true,
+    messages: { type: mongoose.Schema.Types.ObjectId, ref: 'Message' }
   }
 });
 
