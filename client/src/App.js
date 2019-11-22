@@ -7,7 +7,7 @@ import Posts from "./posts";
 import Users from "./users";
 import PostDetail from "./postdetail";
 import UserDetail from "./userdetail";
-import {BrowserRouter as Router, Route} from 'react-router-dom';
+import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
 
 
 class App extends Component {
@@ -21,13 +21,15 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <Router>
-            <Route exact path="/" component={Posts} />
-            <Route exact path="/users" component={Users} />
-            <Route path="/posts/:id" component={PostDetail} />
-            <Route path="/users/:id" component={UserDetail} />
-          </Router>
+          <li className="menu-link"><a href="/">Posts</a></li>
+          <li className="menu-link"><a href="/users">Users</a></li>
         </header>
+        <Router>
+          <Route exact path="/" component={Posts} />
+          <Route exact path="/users" component={Users} />
+          <Route path="/posts/:id" component={PostDetail} />
+          <Route path="/users/:id" component={UserDetail} />
+        </Router>
       </div>
     );
   }
