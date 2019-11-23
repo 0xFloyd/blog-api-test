@@ -20,13 +20,13 @@ function PostDetail({ match }) {
     setItem(blogpost); // setting state to items
     setAuthor(specificAuthor);
     //console.log(specificAuthor);
-    console.log(blogpost._id);
+    //console.log(blogpost._id);
   };
 
   return (
-    <div>
+    <div className="App">
       <h1>{blogpost.text}</h1>
-      <h3>By <Link to={`/users/${author._id}`}> {author.username}</Link></h3>
+      <h3>By <Link className="regular-link" to={`/users/${author._id}`}> {author.username}</Link></h3>
     </div>
     
   );
@@ -35,10 +35,3 @@ function PostDetail({ match }) {
 export default PostDetail;
 
 
-/*
-{item.map(detail => (
-        <h3 key={detail._id}>
-          <Link to={`/posts/${detail._id}`}>{detail.text}</Link>
-        </h3>
-      ))}
-*/

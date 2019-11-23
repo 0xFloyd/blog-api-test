@@ -17,16 +17,16 @@ function Users() {
     
 
         const items = await data.json();
-        console.log(items);
+        //console.log(items);
         setItems(items);        // setting state to items 
     };
 
     return (
-      <div>
+      <div className="App">
         <h1>Users</h1>
         {items.map(item => (
           <h3 key={item._id}>
-            Posts by <Link to={`/users/${item._id}`}>{item.username} </Link>
+            Posts by <Link className="regular-link" to={`/users/${item._id}`}>{item.username} </Link>
           </h3>
         ))}
       </div>

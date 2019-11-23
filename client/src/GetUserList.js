@@ -20,7 +20,7 @@ class GetUserList extends Component {
     fetch("http://localhost:9000/user").then((response) => {
       response.json().then((data) => {
         //console.log(data[1].user.username);
-        console.log(data);
+        //console.log(data);
       });
   });
   }
@@ -44,16 +44,3 @@ export default GetUserList;
 
 
 
-/* 
-
-fetch('http://localhost:4000/upload', {
-method: 'POST',
-body: data
-}).then(response => {
-response.json().then(body => {
-this.setState({ imageURL: `http://localhost:4000/${body.file}` });
-});
-});
-}
-
-*/

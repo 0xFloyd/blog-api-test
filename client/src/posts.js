@@ -22,12 +22,12 @@ function Posts() {
     };
 
     return (
-      <div>
+      <div className="App">
         <h1>Blog Posts</h1>
         {items.map(item => (
           <h3 key={item._id}>
-            <Link to={`/posts/${item._id}`}>{item.text} </Link>
-            by <Link to={`/users/${item.user._id}`}>{item.user.username} </Link>
+            <Link className="regular-link" to={`/posts/${item._id}`}>{item.text} </Link>
+            by <Link className="regular-link" to={`/users/${item.user._id}`}>{item.user.username} </Link>
           </h3>
         ))}
       </div>

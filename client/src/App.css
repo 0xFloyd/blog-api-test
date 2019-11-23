@@ -1,3 +1,7 @@
+body {
+  color: #282c34;
+}
+
 .App {
   text-align: center;
 }
@@ -8,20 +12,58 @@
 
 .App-header {
   background-color: #282c34;
-  min-height: 10vh;
-  display: flex;
-  /*flex-direction: column; */
-  align-items: center;
-  justify-content: center;
+  min-width: 100%;
+  text-align: right;
   font-size: calc(10px + 2vmin);
   color: white;
-}
 
-.App-link {
-  color: #09d3ac;
+   
 }
 
 .menu-link {
+  text-decoration: none;
+  color: #09d3ac;
+}
+
+.menu-list-link {
   list-style: none;
-  padding-right: 50px;
+  display: inline-block;  
+  padding: 20px; 
+ 
+  
+}
+
+.menu-link:hover {
+  list-style: none;
+  color: #09d3ac;
+  text-decoration: underline;
+}
+
+.menu-link:visited {
+  list-style: none;
+  color: #09d3ac;
+  text-decoration: none;
+}
+
+.regular-link {
+  text-decoration: none;
+  color: #09d3ac;
+}
+
+.regular-link:hover {
+  text-decoration: underline;
+   color: #09d3ac;
+}
+
+.blog-post-form {
+  padding: 30px;
+}
+
+.post-submit-button {
+  background-color: #09d3ac !important;
+  border-color: white !important;
+}
+
+.post-submit-button:hover {
+  background-color: #05ecbe !important;
 }

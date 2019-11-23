@@ -14,7 +14,7 @@ function UserDetail({ match }) {
 
   const fetchItem = async () => {
     const authorsPosts  = [];
-    console.log(match);
+    //console.log(match);
     const postAuthorId = match.params.id;
     const data = await fetch(`http://localhost:9000/message`);
     const messages = await data.json();
@@ -30,11 +30,11 @@ function UserDetail({ match }) {
   };
   
   return (
-    <div>
+    <div className="App">
       <h1> Posts by {author}</h1>
       {authorsPosts.map(post => (
         <h3 key={post._id}>
-          <Link to={`/posts/${post._id}`}>{post.text} </Link>
+          <Link className="regular-link" to={`/posts/${post._id}`}>{post.text} </Link>
         </h3>
       ))}
     </div>

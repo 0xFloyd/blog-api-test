@@ -7,6 +7,7 @@ import Posts from "./posts";
 import Users from "./users";
 import PostDetail from "./postdetail";
 import UserDetail from "./userdetail";
+import NewPost from "./newpost";
 import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
 
 
@@ -19,17 +20,21 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
+      <div>
         <header className="App-header">
-          <li className="menu-link"><a href="/">Posts</a></li>
-          <li className="menu-link"><a href="/users">Users</a></li>
+          <li className="menu-list-link"><a className="menu-link" href="/">Posts</a></li>
+          <li className="menu-list-link"><a className="menu-link" href="/users">Users</a></li>
+          <li className="menu-list-link"><a className="menu-link" href="/newpost">New Post</a></li>
         </header>
-        <Router>
-          <Route exact path="/" component={Posts} />
-          <Route exact path="/users" component={Users} />
-          <Route path="/posts/:id" component={PostDetail} />
-          <Route path="/users/:id" component={UserDetail} />
-        </Router>
+        <div className="App">
+          <Router>
+            <Route exact path="/" component={Posts} />
+            <Route exact path="/users" component={Users} />
+            <Route exact path="/newpost" component={NewPost} />
+            <Route path="/posts/:id" component={PostDetail} />
+            <Route path="/users/:id" component={UserDetail} />
+          </Router>
+        </div>
       </div>
     );
   }
