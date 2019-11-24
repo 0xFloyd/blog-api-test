@@ -30,20 +30,11 @@ class NewPost extends Component {
     }
 
     async handleSubmit(event) {
-        console.log(
-        "A title was submitted: " +
-            this.state.title +
-            this.state.description
-        );
-        
         const payload = {
             text: this.state.description
         }
 
         let data = JSON.stringify(payload);
-       
-        console.log(data);
-
         
         try {
           const response = await fetch("http://localhost:9000/message/", {
@@ -52,7 +43,6 @@ class NewPost extends Component {
             headers: { "Content-type": "application/json" }
           });
           const result = await response.json();
-          console.log("Success:", JSON.stringify(result));
         } catch (error) {
           console.error("Error:", error);
         }

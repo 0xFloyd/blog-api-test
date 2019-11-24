@@ -7,11 +7,20 @@ import uuidv4 from "uuid/v4";
 var models = require('../models');
 var userModel = require('../models/user');
 var messageModel = require("../models/message");
-var routes = require('../routes/index');
+var routes = require("../routes/index"); //jwt stuff
+const jwt = require("jsonwebtoken");
+const auth = require("../middleware/auth");
+
+//passport stuff
+const passport = require("passport");
+//const jwtStrategry = require("./strategies/jwt");
+//passport.use(jwtStrategry);
 
 var userRouter = require("../routes/user");
 var messageRouter = require("../routes/message");
 var sessionRouter = require("../routes/session");
+var loginRouter = require("../routes/login");
+var authRouter = require("../routes/auth");
 
 
 const app = express();
@@ -27,6 +36,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/session", sessionRouter);
 app.use("/user", userRouter);
 app.use("/message", messageRouter);
+app.use("/login", loginRouter);
+app.use("/auth", authRouter);
+
 
 //  Let's do a simple version of a middleware that determines a pseudo "authenticated" user that is sending the request.
 //  Pass models via the context object to every Express route with an application-wide Express middleware 
@@ -34,7 +46,10 @@ app.use("/message", messageRouter);
 
 
 const connectDb = () => {
-  return mongoose.connect(process.env.DATABASE_URL);
+  return mongoose.connect(process.env.DATABASE_URL, {
+    useNewUrlParser: true,
+    useCreateIndex: true
+  });
 };
 
 //  re-initialize db on every start, and clear out all old data

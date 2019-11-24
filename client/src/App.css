@@ -13,11 +13,16 @@ body {
 .App-header {
   background-color: #282c34;
   min-width: 100%;
-  text-align: right;
   font-size: calc(10px + 2vmin);
   color: white;
+  text-align: right;
+  margin-bottom: 20px;
+}
 
-   
+.site-brand{
+  padding: 0;
+  margin: 0;
+  float: left !important;
 }
 
 .menu-link {
@@ -25,12 +30,17 @@ body {
   color: #09d3ac;
 }
 
+.home-list-link {
+   list-style: none;
+  display: inline-block;  
+  padding: 20px; 
+  
+}
+
 .menu-list-link {
   list-style: none;
   display: inline-block;  
   padding: 20px; 
- 
-  
 }
 
 .menu-link:hover {

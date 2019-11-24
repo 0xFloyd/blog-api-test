@@ -24,21 +24,38 @@ function UserDetail({ match }) {
       };
     }); 
     
-    const postAuthor = authorsPosts[0].user.username; //its grabbing first message returned, but the author should be the same for all itenms in the array
-    setPosts(authorsPosts); // setting state to items
-    setAuthor(postAuthor);
+    if (authorsPosts[0]) {
+      const postAuthor = authorsPosts[0].user.username; //its grabbing first message returned, but the author should be the same for all itenms in the array
+      setPosts(authorsPosts); // setting state to items
+      setAuthor(postAuthor);
+    }
   };
+
+  if (authorsPosts[0]) {
+    return (
+      <div className="App">
+        <h1> Posts by {author}</h1>
+        {authorsPosts.map(post => (
+          <h3 key={post._id}>
+            <Link className="regular-link" to={`/posts/${post._id}`}>
+              {post.text}{" "}
+            </Link>
+          </h3>
+        ))}
+      </div>
+    );
+
+  } else {
+    return (
+      <div className="App">
+        <h1> This user has no posts</h1>
+      </div>
+    );
+  }
+
   
-  return (
-    <div className="App">
-      <h1> Posts by {author}</h1>
-      {authorsPosts.map(post => (
-        <h3 key={post._id}>
-          <Link className="regular-link" to={`/posts/${post._id}`}>{post.text} </Link>
-        </h3>
-      ))}
-    </div>
-  );
+  
+  
 }
 
 export default UserDetail;

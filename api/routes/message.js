@@ -4,6 +4,7 @@ var router = express.Router();
 var userModel = require("../models/user");
 var messageModel = require("../models/message");
 
+
 //get all messages
 router.get("/", async (req, res) => {
   const messages = await messageModel.find({}).populate('user');
@@ -13,7 +14,6 @@ router.get("/", async (req, res) => {
 //get particular messages
 router.get("/:messageId", async (req, res) => {
   const message = await messageModel.findById(req.params.messageId).populate('user');
-  console.log(message);
   return res.send(message);
 });
 
