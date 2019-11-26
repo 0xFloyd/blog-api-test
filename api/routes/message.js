@@ -3,10 +3,15 @@ var express = require("express");
 var router = express.Router();
 var userModel = require("../models/user");
 var messageModel = require("../models/message");
+const auth = require("../middleware/auth");
 
 
 //get all messages
 router.get("/", async (req, res) => {
+  const authHeader = req.get("Authorization");
+  const user = req.user;
+  console.log(authHeader);
+  console.log(user);
   const messages = await messageModel.find({}).populate('user');
   return res.send(messages);
 });
@@ -40,3 +45,15 @@ router.delete("/:messageId", async (req, res) => {
 });
 
 module.exports = router;
+
+/*
+// create new message, creating a unique id for that maessage,
+router.post("/", async (req, res) => {
+  const tempUser = await userModel.findByLogin("ryan");
+  const message = await messageModel.create({
+    text: req.body.text,
+    user: tempUser.id
+  });
+  return res.send({ message, tempUser});
+});
+*/

@@ -4,8 +4,10 @@ var userModel = require("../models/user");
 const auth = require("../middleware/auth");
 
 
-router.get("/userloggedin", auth, async (req, res) => {
+router.get("/", auth, async (req, res) => {
   // View logged in user
+
+ 
   return res.send(req.user);
 });
 

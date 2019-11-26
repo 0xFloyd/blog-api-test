@@ -26,9 +26,8 @@ function PostDetail({ match }) {
   return (
     <div className="App">
       <h1>{blogpost.text}</h1>
-      <h3>By <Link className="regular-link" to={`/users/${author._id}`}> {author.username}</Link></h3>
+      {blogpost.text ? <h3>By <Link className="regular-link" to={`/users/${author._id}`}> {author.username}</Link></h3> : <h3></h3>}
     </div>
-    
   );
 }
 

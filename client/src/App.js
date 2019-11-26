@@ -8,8 +8,10 @@ import Users from "./users";
 import PostDetail from "./postdetail";
 import UserDetail from "./userdetail";
 import NewPost from "./newpost";
+import Signup from "./signup";
+import Login from "./login";
 import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
-
+import header from "./header";
 
 class App extends Component {
   constructor(props) {
@@ -27,6 +29,8 @@ class App extends Component {
           </div>
           <li className="menu-list-link"><a className="menu-link" href="/">Posts</a></li>
           <li className="menu-list-link"><a className="menu-link" href="/users">Users</a></li>
+          <li className="menu-list-link"><a className="menu-link" href="/signup">Sign Up</a></li>
+          <li className="menu-list-link"><a className="menu-link" href="/login">Log In</a></li>
           <li className="menu-list-link"><a className="menu-link" href="/newpost">New Post</a></li>
         </header>
         <div className="App">
@@ -34,6 +38,8 @@ class App extends Component {
             <Route exact path="/" component={Posts} />
             <Route exact path="/users" component={Users} />
             <Route exact path="/newpost" component={NewPost} />
+            <Route exact path="/signup" component={Signup} />
+            <Route exact path="/login" component={Login} />
             <Route path="/posts/:id" component={PostDetail} />
             <Route path="/users/:id" component={UserDetail} />
           </Router>

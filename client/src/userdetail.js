@@ -29,12 +29,16 @@ function UserDetail({ match }) {
       setPosts(authorsPosts); // setting state to items
       setAuthor(postAuthor);
     }
-  };
 
-  if (authorsPosts[0]) {
-    return (
+    else {
+      const postAuthor = "This user has no posts";
+      setAuthor(postAuthor);
+    }
+  }
+
+  return (
       <div className="App">
-        <h1> Posts by {author}</h1>
+        {authorsPosts[0] ? <h1> Posts by {author}</h1> : <h1>{author}</h1>}
         {authorsPosts.map(post => (
           <h3 key={post._id}>
             <Link className="regular-link" to={`/posts/${post._id}`}>
@@ -44,18 +48,6 @@ function UserDetail({ match }) {
         ))}
       </div>
     );
-
-  } else {
-    return (
-      <div className="App">
-        <h1> This user has no posts</h1>
-      </div>
-    );
-  }
-
-  
-  
-  
 }
 
 export default UserDetail;

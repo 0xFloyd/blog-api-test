@@ -39,6 +39,7 @@ router.post("/login", async (req, res) => {
         .send({ error: "Login failed! Check authentication credentials" });
     }
     const token = await user.generateAuthToken();
+    console.log(user);
     res.send({ user, token });
   } catch (error) {
     res.status(400).send(error);

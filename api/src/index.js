@@ -32,11 +32,19 @@ app.use(cors());
 // Express exposes this built-in middleware (based on (body-parser) under the covers) to transform two of the body types we might receive - json, and urlencoded.
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(function(req, res, next) {
+  if (!req.headers.authorization) {
+    console.log("no header");
+  }
+  else {
+    console.log(req.headers.authorization);
+  }
+  next();
+});
 
 app.use("/session", sessionRouter);
 app.use("/user", userRouter);
 app.use("/message", messageRouter);
-app.use("/login", loginRouter);
 app.use("/auth", authRouter);
 
 
