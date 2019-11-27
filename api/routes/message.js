@@ -16,20 +16,24 @@ router.get("/", async (req, res) => {
   return res.send(messages);
 });
 
+
 //get particular messages
 router.get("/:messageId", async (req, res) => {
   const message = await messageModel.findById(req.params.messageId).populate('user');
   return res.send(message);
 });
 
-// create new message, creating a unique id for that maessage, 
-router.post("/", async (req, res) => {
-  const tempUser = await userModel.findByLogin("ryan");
+
+
+
+// create new message, creating a unique id for that message, 
+router.post("/newpost", async (req, res) => {
+  const tempUser = await userModel.findByCredentials("test@gmail.com", "meow");
   const message = await messageModel.create({
     text: req.body.text,
-    user: tempUser.id
+    user: tempUser
   });
-  return res.send({ message, tempUser});
+  return res.send({ message, tempUser });
 });
 
 

@@ -24,10 +24,18 @@ class NewPost extends Component {
         const value = target.value;
         const name = target.name;
 
-        this.setState({
+        this.setState({ 
             [name]: value,
         });
     }
+
+    async componentDidMount() {
+        const data = await fetch("http://localhost:9000/message/newpost");
+        const user = await data.json();
+        console.log(user);
+    }
+
+
 
     async handleSubmit(event) {
         const payload = {

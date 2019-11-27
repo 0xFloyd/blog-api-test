@@ -28,18 +28,18 @@ class App extends Component {
              <li className="menu-list-link"><a className="menu-link" href="/">Home</a></li>
           </div>
           <li className="menu-list-link"><a className="menu-link" href="/">Posts</a></li>
-          <li className="menu-list-link"><a className="menu-link" href="/users">Users</a></li>
-          <li className="menu-list-link"><a className="menu-link" href="/signup">Sign Up</a></li>
-          <li className="menu-list-link"><a className="menu-link" href="/login">Log In</a></li>
-          <li className="menu-list-link"><a className="menu-link" href="/newpost">New Post</a></li>
+          <li className="menu-list-link"><a className="menu-link" href="/user">Users</a></li>
+          <li className="menu-list-link"><a className="menu-link" href="/user/signup">Sign Up</a></li>
+          <li className="menu-list-link"><a className="menu-link" href="/user/login">Log In</a></li>
+          <li className="menu-list-link"><a className="menu-link" href="/message/newpost">New Post</a></li>
         </header>
         <div className="App">
           <Router>
             <Route exact path="/" component={Posts} />
-            <Route exact path="/users" component={Users} />
-            <Route exact path="/newpost" component={NewPost} />
-            <Route exact path="/signup" component={Signup} />
-            <Route exact path="/login" component={Login} />
+            <Route exact path="/user" component={Users} />
+            <Route exact path="/message/newpost" component={NewPost} />
+            <Route exact path="/user/signup" component={Signup} />
+            <Route exact path="/user/login" component={Login} />
             <Route path="/posts/:id" component={PostDetail} />
             <Route path="/users/:id" component={UserDetail} />
           </Router>
