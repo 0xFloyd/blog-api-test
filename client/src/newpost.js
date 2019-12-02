@@ -29,12 +29,11 @@ class NewPost extends Component {
         });
     }
 
+    
     async componentDidMount() {
-        const data = await fetch("http://localhost:9000/message/newpost");
-        const user = await data.json();
-        console.log(user);
+        const data = await fetch("http://localhost:9000/newpost");
+        console.log("new post component mount data:", data);
     }
-
 
 
     async handleSubmit(event) {
@@ -45,7 +44,7 @@ class NewPost extends Component {
         let data = JSON.stringify(payload);
         
         try {
-          const response = await fetch("http://localhost:9000/message/", {
+          const response = await fetch("http://localhost:9000/newpost", {
             method: "POST",
             body: data,
             headers: { "Content-type": "application/json" }

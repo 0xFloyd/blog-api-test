@@ -25,18 +25,6 @@ router.get("/:messageId", async (req, res) => {
 
 
 
-
-// create new message, creating a unique id for that message, 
-router.post("/newpost", async (req, res) => {
-  const tempUser = await userModel.findByCredentials("test@gmail.com", "meow");
-  const message = await messageModel.create({
-    text: req.body.text,
-    user: tempUser
-  });
-  return res.send({ message, tempUser });
-});
-
-
 //  There are shorter ways to accomplish the remove of a message in the database with Mongoose. 
 //  This makes sure to trigger the database hooks which can be set up in the models. remove() hook in the src/models/user.js file 
 router.delete("/:messageId", async (req, res) => {

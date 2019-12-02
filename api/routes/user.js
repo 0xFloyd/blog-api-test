@@ -31,7 +31,8 @@ router.post("/signup", async (req, res) => {
 router.post("/login", async (req, res) => {
   //Login a registered user
   try {
-    const { email, password } = req.body;
+    const email = req.body.email;
+    const password = req.body.password;
     const user = await userModel.findByCredentials(email, password);
     if (!user) {
       return res
@@ -39,7 +40,7 @@ router.post("/login", async (req, res) => {
         .send({ error: "Login failed! Check authentication credentials" });
     }
     const token = await user.generateAuthToken();
-    console.log(user);
+    console.log("user logged in:" + user);
     res.send({ user, token });
   } catch (error) {
     res.status(400).send(error);

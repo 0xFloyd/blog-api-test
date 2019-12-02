@@ -21,6 +21,7 @@ var messageRouter = require("../routes/message");
 var sessionRouter = require("../routes/session");
 var loginRouter = require("../routes/login");
 var authRouter = require("../routes/auth");
+var newPostRouter = require("../routes/newpost");
 
 
 const app = express();
@@ -46,6 +47,7 @@ app.use("/session", sessionRouter);
 app.use("/user", userRouter);
 app.use("/message", messageRouter);
 app.use("/auth", authRouter);
+app.use("/newpost", newPostRouter);
 
 
 //  Let's do a simple version of a middleware that determines a pseudo "authenticated" user that is sending the request.
