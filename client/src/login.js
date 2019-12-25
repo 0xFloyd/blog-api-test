@@ -34,7 +34,7 @@ class Login extends Component {
             email: this.state.email,
             password: this.state.password
         }
-
+        console.log("login submit fired react");
         let data = JSON.stringify(payload);
         
         try {
@@ -44,6 +44,7 @@ class Login extends Component {
             headers: { "Content-type": "application/json" }
           });
           const result = await response.json();
+          console.log("POST login result REACT: " + result);
         } catch (error) {
           console.error("Error:", error);
         }
